@@ -26,6 +26,30 @@ export default function ClientTable() {
     fetchClients();
   }, []);
 
+  async function deleteItem(id) {
+    try {
+      const response = await fetch('/api/delete-client', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao deletar item');
+      }
+
+      console.log('Item deletado com sucesso:', data);
+      return data;
+    } catch (error) {
+      console.error('Erro na requisição DELETE:', error);
+      throw error;
+    }
+  }
+
   return (
     <div className={styles.container}>
       <h2>Lista de Clientes</h2>""
@@ -46,6 +70,13 @@ export default function ClientTable() {
                 <td>{client.email}</td>
                 <td>{client.ativo ? 'Sim' : 'Não'}</td>
                 <td>{client._id}</td>
+                <td
+                  onClick={() => {
+                    deleteItem(client._id);
+                  }}
+                >
+                  Excluir
+                </td>
               </tr>
             ))}
         </tbody>

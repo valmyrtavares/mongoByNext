@@ -1,0 +1,14 @@
+.menuHeader{
+    ul{
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        padding: 0.5rem 1rem;
+        background-color: var(--color-background);
+        border-bottom: 1px solid var(--color-border);
+        li{
+            list-style: none;;
+        }
+
+    }
+}
