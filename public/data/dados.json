@@ -1,0 +1,100 @@
+[
+  {
+    "id": 1,
+    "titulo": "Camiseta Azul",
+    "preco": "49.90",
+    "categoria": "Roupas",
+    "data_compra": 45413
+  },
+  {
+    "id": 2,
+    "titulo": "Tênis Branco",
+    "preco": "199.9",
+    "categoria": "Calçados",
+    "data_compra": 45414
+  },
+  {
+    "id": 3,
+    "titulo": "Camiseta Veremlha",
+    "preco": 45739,
+    "categoria": "Roupas",
+    "data_compra": 45413
+  },
+  {
+    "id": 4,
+    "titulo": "carro",
+    "preco": "23.",
+    "categoria": "Calçados",
+    "data_compra": 45414
+  },
+  {
+    "id": 5,
+    "titulo": "Mesa",
+    "preco": "33.2",
+    "categoria": "Roupas",
+    "data_compra": 45413
+  },
+  {
+    "id": 6,
+    "titulo": "Liquidificador",
+    "preco": 122,
+    "categoria": "Roupas",
+    "data_compra": 45414
+  },
+  {
+    "id": 7,
+    "titulo": "Prato",
+    "preco": 32,
+    "categoria": "Calçados",
+    "data_compra": 45413
+  },
+  {
+    "id": 8,
+    "titulo": "Camisa",
+    "preco": 32,
+    "categoria": "Roupas",
+    "data_compra": 45414
+  },
+  {
+    "id": 9,
+    "titulo": "Tenis",
+    "preco": 11,
+    "categoria": "Calçados",
+    "data_compra": 45413
+  },
+  {
+    "id": 10,
+    "titulo": "Mouse",
+    "preco": 412,
+    "categoria": "Roupas",
+    "data_compra": 45414
+  },
+  {
+    "id": 11,
+    "titulo": "Computador",
+    "preco": 43,
+    "categoria": "Calçados",
+    "data_compra": 45413
+  },
+  {
+    "id": 12,
+    "titulo": "Canela",
+    "preco": 4,
+    "categoria": "Roupas",
+    "data_compra": 45414
+  },
+  {
+    "id": 13,
+    "titulo": "Lapis",
+    "preco": 332,
+    "categoria": "Calçados",
+    "data_compra": 45413
+  },
+  {
+    "id": 14,
+    "titulo": "Batedor de ovos",
+    "preco": 23,
+    "categoria": "Roupas",
+    "data_compra": 45414
+  }
+]
