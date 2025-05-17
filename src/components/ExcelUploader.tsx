@@ -26,11 +26,31 @@ export default function ExcelUploader() {
     reader.readAsArrayBuffer(file);
   };
 
+  const sendToApi = async () => {
+    try {
+      const response = await fetch('/api/upload-json', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      console.log('Resposta da API:', result);
+      alert(`Enviado! ${result.length} registros.`);
+    } catch (error) {
+      console.error('Erro ao enviar JSON:', error);
+      alert('Erro ao enviar JSON');
+    }
+  };
+
   return (
     <div>
       <h2>Importar Excel</h2>
       <input type="file" accept=".xlsx, .xls" onChange={handleFileUpload} />
       <pre>{JSON.stringify(data, null, 2)}</pre>
+      <button onClick={sendToApi}>Enviar JSON para API</button>
     </div>
   );
 }
