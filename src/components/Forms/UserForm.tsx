@@ -1,5 +1,5 @@
 'use client';
-import style from '../styles/layouts/UserForm.module.scss';
+import style from '../../styles/layouts/UserForm.module.scss';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
@@ -27,7 +27,7 @@ export default function UserForm() {
       dataCadastro: new Date().toISOString(),
     };
 
-    const response = await fetch('/api/post', {
+    const response = await fetch('/api/post/user/', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(dataComTimestamp),

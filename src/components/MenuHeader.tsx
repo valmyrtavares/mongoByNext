@@ -12,14 +12,17 @@ const MenuHeader = () => {
           </li>
           <li>
             {' '}
-            <Link href="/exercises">Cadatro de Clientes</Link>
+            <Link href="/forms/user-form">Cadatro de Clientes</Link>
           </li>
           <li>
             {' '}
-            <Link href="/form-products">Cadatro de Produtos</Link>
+            <Link href="/forms/product-form">Cadastro de Produtos</Link>
           </li>
           <li>
-            <Link href="get-clients">Lista de Clientes</Link>
+            <Link href="/get/clients">Lista de Clientes</Link>
+          </li>
+          <li>
+            <Link href="/get/products">Lista de Produtos</Link>
           </li>
         </ul>
       </div>

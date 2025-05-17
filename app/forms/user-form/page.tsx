@@ -1,5 +1,5 @@
 //import BuilderExercises from '@/components/BuilderExercises';
-import UserForm from '@/components/UserForm';
+import UserForm from '@/components/Forms/UserForm';
 import '@/styles/globals.scss';
 
 const Exercises = () => {

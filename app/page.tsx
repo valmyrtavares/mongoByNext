@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import '../styles/globals.scss';
+import '@/styles/globals.scss';
 
 export default function MainMenu() {
   return (

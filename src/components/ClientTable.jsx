@@ -10,7 +10,7 @@ export default function ClientTable() {
     async function fetchClients() {
       console.log('estou entrando aqui');
       try {
-        const res = await fetch('/api/get-clients');
+        const res = await fetch('/api/get/clients');
         const data = await res.json();
         console.log('data', data);
         setClients(data);
@@ -26,9 +26,9 @@ export default function ClientTable() {
     fetchClients();
   }, []);
 
-  async function deleteItem(id) {
+  async function deleteClient(id) {
     try {
-      const response = await fetch('/api/delete-client', {
+      const response = await fetch('/api/delete/clients', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ export default function ClientTable() {
                 <td>{client._id}</td>
                 <td
                   onClick={() => {
-                    deleteItem(client._id);
+                    deleteClient(client._id);
                   }}
                 >
                   Excluir
