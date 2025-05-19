@@ -24,6 +24,9 @@ const MenuHeader = () => {
           <li>
             <Link href="/get/products">Lista de Produtos</Link>
           </li>
+          <li>
+            <Link href="/import">Excel</Link>
+          </li>
         </ul>
       </div>
     </div>
