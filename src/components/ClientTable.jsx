@@ -2,6 +2,7 @@
 'use client';
 import { useEffect, useState } from 'react';
 import styles from '../styles/components/ClientTable.module.scss';
+import * as XLSX from 'xlsx';
 
 export default function ClientTable() {
   const [clients, setClients] = useState([]);
@@ -25,6 +26,33 @@ export default function ClientTable() {
 
     fetchClients();
   }, []);
+
+  const exportToExcel = () => {
+    if (!clients.length) {
+      alert('Nenhum cliente para exportar!');
+      return;
+    }
+
+    try {
+      const formattedData = clients.map(({ _id, ...rest }) => ({
+        ...rest,
+        dataCadastro: new Date(rest.dataCadastro).toLocaleDateString('pt-BR'),
+      }));
+
+      console.log('Dados formatados:', formattedData);
+
+      const worksheet = XLSX.utils.json_to_sheet(formattedData);
+      const workbook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(workbook, worksheet, 'Clientes');
+      XLSX.writeFile(workbook, 'clientes.xlsx');
+
+      console.log('Arquivo Excel gerado com sucesso!');
+      alert('Arquivo Excel foi baixado com sucesso!');
+    } catch (err) {
+      console.error('Erro ao exportar Excel:', err);
+      alert('Erro ao gerar o arquivo Excel');
+    }
+  };
 
   async function deleteClient(id) {
     try {
@@ -52,7 +80,8 @@ export default function ClientTable() {
 
   return (
     <div className={styles.container}>
-      <h2>Lista de Clientes</h2>""
+      <h2>Lista de Clientes</h2>
+      <button onClick={exportToExcel}>Baixar Excel</button>
       <table className={styles.table}>
         <thead>
           <tr>
