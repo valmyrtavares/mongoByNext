@@ -19,11 +19,9 @@ const MenuHeader = () => {
             <Link href="/forms/product-form">Cadastro de Produtos</Link>
           </li>
           <li>
-            <Link href="/get/clients">Lista de Clientes</Link>
+            <Link href="/get">Lista de dados</Link>
           </li>
-          <li>
-            <Link href="/get/products">Lista de Produtos</Link>
-          </li>
+
           <li>
             <Link href="/import">Excel</Link>
           </li>
