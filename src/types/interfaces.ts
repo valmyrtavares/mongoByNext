@@ -5,3 +5,11 @@ export interface Product {
   ativo: boolean;
   price: string;
 }
+
+export interface Tropical {
+  _id: string;
+  Nome: string;
+  CPF: string;
+  Aniverário: string;
+  Celular: string;
+}
