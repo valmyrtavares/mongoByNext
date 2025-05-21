@@ -1,29 +1,26 @@
-// import mongoose from 'mongoose';
+// lib/mongodb.js
+import { MongoClient } from 'mongodb';
 
-// const MONGODB_URI = process.env.MONGODB_URI; // ex: mongodb://localhost:27017/restaurante
+const uri = process.env.MONGODB_URI;
+const options = {};
 
-// if (!MONGODB_URI) {
-//   throw new Error('Defina a MONGODB_URI no .env.local');
-// }
-// let cached = global.mongoose;
+let client;
+let clientPromise;
 
-// if (!cached) {
-//   cached = global.mongoose = { conn: null, promise: null };
-// }
+if (!process.env.MONGODB_URI) {
+  throw new Error('Please add your Mongo URI to .env.local');
+}
 
-// export async function connectToDatabase() {
-//   console.log('Estou aqui na lib/mongo.js');
-//   if (cached.conn) return cached.conn;
+if (process.env.NODE_ENV === 'development') {
+  // Use global to preserve value across module reloads
+  if (!global._mongoClientPromise) {
+    client = new MongoClient(uri, options);
+    global._mongoClientPromise = client.connect();
+  }
+  clientPromise = global._mongoClientPromise;
+} else {
+  client = new MongoClient(uri, options);
+  clientPromise = client.connect();
+}
 
-//   if (!cached.promise) {
-//     cached.promise = mongoose
-//       .connect(MONGODB_URI, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//       })
-//       .then((mongoose) => mongoose);
-//   }
-
-//   cached.conn = await cached.promise;
-//   return cached.conn;
-// }
+export default clientPromise;

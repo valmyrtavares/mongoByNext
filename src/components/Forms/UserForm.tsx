@@ -40,7 +40,7 @@ export default function UserForm() {
       ativo: false,
     });
 
-    router.push('/get-clients');
+    router.push('/get');
     console.log('Resultado:', result);
   }
 

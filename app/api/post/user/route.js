@@ -1,9 +1,10 @@
-import { MongoClient } from 'mongodb';
+//import { MongoClient } from 'mongodb';
+import clientPromise from '@/lib/mongo';
 
 export async function POST(request) {
   const data = await request.json();
 
-  const client = await MongoClient.connect('mongodb://127.0.0.1:27017');
+  const client = await clientPromise;
   const db = client.db('next-db');
   const collection = db.collection('user-next');
 
