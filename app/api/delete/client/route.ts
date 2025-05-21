@@ -1,5 +1,3 @@
-// app/api/delete-client/route.ts
-
 import { NextResponse } from 'next/server';
 import { MongoClient, ObjectId } from 'mongodb';
 
@@ -17,17 +15,9 @@ export async function DELETE(request: Request) {
     const body = await request.json();
     const { id } = body;
 
-    if (!id || typeof id !== 'string') {
+    if (!id || typeof id !== 'string' || !ObjectId.isValid(id)) {
       return NextResponse.json(
         { error: 'ID inválido ou ausente' },
-        { status: 400 }
-      );
-    }
-
-    // Verifica se é um ObjectId válido
-    if (!ObjectId.isValid(id)) {
-      return NextResponse.json(
-        { error: 'Formato de ID inválido' },
         { status: 400 }
       );
     }
@@ -36,12 +26,11 @@ export async function DELETE(request: Request) {
     const db = client.db(dbName);
     const collection = db.collection('user-next');
 
-    const objectId = new ObjectId(id); // Aceito se for string válida (não número!)
-    const result = await collection.deleteOne({ _id: objectId });
+    const result = await collection.deleteOne({ _id: new ObjectId(id) });
 
     if (result.deletedCount === 0) {
       return NextResponse.json(
-        { error: 'Nenhum cliente encontrado com esse ID' },
+        { error: 'Cliente não encontrado' },
         { status: 404 }
       );
     }
@@ -55,4 +44,3 @@ export async function DELETE(request: Request) {
     );
   }
 }
-//lux

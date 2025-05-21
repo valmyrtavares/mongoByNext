@@ -56,7 +56,7 @@ export default function ClientTable() {
 
   async function deleteClient(id) {
     try {
-      const response = await fetch('/api/delete/clients', {
+      const response = await fetch('/api/delete/client', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
