@@ -26,7 +26,7 @@ const ProductTable = () => {
   const deleteProduct = async (id: string) => {
     console.log('id', id);
     try {
-      const response = await fetch('/api/delete/products', {
+      const response = await fetch('/api/delete/tropical', {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
