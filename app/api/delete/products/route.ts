@@ -1,14 +1,15 @@
 import { NextResponse } from 'next/server';
-import { MongoClient, ObjectId } from 'mongodb';
+import { ObjectId } from 'mongodb';
+import clientPromise from '@/lib/mongodb';
 
-const uri = process.env.MONGODB_URI;
+//const uri = process.env.MONGODB_URI;
 const dbName = 'next-db'; // ❗ Certifique-se que isso está correto
 
-if (!uri) {
-  throw new Error('MONGODB_URI não está definido nas variáveis de ambiente');
-}
+// if (!uri) {
+//   throw new Error('MONGODB_URI não está definido nas variáveis de ambiente');
+// }
 
-const client = new MongoClient(uri);
+const tropical = await clientPromise;
 
 export async function DELETE(request: Request) {
   try {
@@ -22,8 +23,8 @@ export async function DELETE(request: Request) {
       );
     }
 
-    await client.connect();
-    const db = client.db(dbName);
+    await tropical.connect();
+    const db = tropical.db(dbName);
     const collection = db.collection('product-next');
 
     const result = await collection.deleteOne({ _id: new ObjectId(id) });

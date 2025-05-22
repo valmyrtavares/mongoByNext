@@ -1,5 +1,5 @@
 //import { MongoClient } from 'mongodb';
-import clientPromise from '@/lib/mongo';
+import clientPromise from '@/lib/mongodb';
 
 export async function POST(request) {
   const data = await request.json();

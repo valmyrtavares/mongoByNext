@@ -1,12 +1,12 @@
 // app/api/get-clients/route.js
 import { NextResponse } from 'next/server';
-import { MongoClient } from 'mongodb';
+import clientPromise from '@/lib/mongodb';
 
-const uri = process.env.MONGODB_URI;
-if (!uri) {
-  throw new Error('MONGODB_URI is not defined in environment variables');
-}
-const client = new MongoClient(uri);
+// const uri = process.env.MONGODB_URI;
+// if (!uri) {
+//   throw new Error('MONGODB_URI is not defined in environment variables');
+// }
+const client = await clientPromise;
 const dbName = 'next-db';
 
 export async function GET() {
