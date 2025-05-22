@@ -9,8 +9,6 @@ const dbName = 'next-db'; // ❗ Certifique-se que isso está correto
 //   throw new Error('MONGODB_URI não está definido nas variáveis de ambiente');
 // }
 
-const tropical = await clientPromise;
-
 export async function DELETE(request: Request) {
   try {
     const body = await request.json();
@@ -22,8 +20,7 @@ export async function DELETE(request: Request) {
         { status: 400 }
       );
     }
-
-    await tropical.connect();
+    const tropical = await clientPromise;
     const db = tropical.db(dbName);
     const collection = db.collection('product-next');
 

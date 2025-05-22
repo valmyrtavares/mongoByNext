@@ -1,31 +1,29 @@
 // lib/mongodb.ts
-import { MongoClient } from 'mongodb';
+import { MongoClient, MongoClientOptions } from 'mongodb';
 
 const uri = process.env.MONGODB_URI;
-const options = {};
+const options: MongoClientOptions = {};
 
 if (!uri) {
   throw new Error('Please add your Mongo URI to .env.local');
 }
 
-// Armazenamento global tipado para evitar múltiplas conexões em dev
-let client: MongoClient;
-let clientPromise: Promise<MongoClient>;
-
-/* eslint-disable no-var */
+// Tipagem global para evitar múltiplas conexões no desenvolvimento
 declare global {
-  // Permite salvar o client globalmente sem erro no TypeScript
+  // eslint-disable-next-line no-var
   var _mongoClientPromise: Promise<MongoClient> | undefined;
 }
 
+let clientPromise: Promise<MongoClient>;
+
 if (process.env.NODE_ENV === 'development') {
   if (!global._mongoClientPromise) {
-    client = new MongoClient(uri, options);
+    const client = new MongoClient(uri, options);
     global._mongoClientPromise = client.connect();
   }
-  clientPromise = global._mongoClientPromise!;
+  clientPromise = global._mongoClientPromise;
 } else {
-  client = new MongoClient(uri, options);
+  const client = new MongoClient(uri, options);
   clientPromise = client.connect();
 }
 

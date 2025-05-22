@@ -6,13 +6,12 @@ import clientPromise from '@/lib/mongodb';
 // if (!uri) {
 //   throw new Error('MONGODB_URI is not defined in environment variables');
 // }
-const client = await clientPromise;
 const dbName = 'next-db';
 
 export async function GET() {
   console.log('Conectando ao MongoDB...');
   try {
-    await client.connect();
+    const client = await clientPromise;
     const db = client.db(dbName);
     const collection = db.collection('user-next');
     const users = await collection.find({}).toArray();

@@ -9,8 +9,6 @@ const dbName = 'next-db'; // ❗ Certifique-se que isso está correto
 //   throw new Error('MONGODB_URI não está definido nas variáveis de ambiente');
 // }
 
-const client = await clientPromise;
-
 export async function DELETE(request: Request) {
   try {
     const body = await request.json();
@@ -23,7 +21,7 @@ export async function DELETE(request: Request) {
       );
     }
 
-    await client.connect();
+    const client = await clientPromise;
     const db = client.db(dbName);
     const collection = db.collection('aleatoria');
 
