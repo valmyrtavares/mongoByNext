@@ -1,9 +1,9 @@
-import { MongoClient } from 'mongodb';
+import clientPromise from '@/lib/mongo';
 
 export async function POST(request) {
   const data = await request.json();
 
-  const product = await MongoClient.connect('mongodb://127.0.0.1:27017');
+  const product = await clientPromise;
   const db = product.db('next-db');
   const collection = db.collection('product-next');
 
