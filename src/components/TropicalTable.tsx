@@ -23,27 +23,27 @@ const ProductTable = () => {
     fetchProducts();
   }, []);
 
-  // const deleteProduct = async (id: string) => {
-  //   console.log('id', id);
-  //   try {
-  //     const response = await fetch('/api/delete/tropical', {
-  //       method: 'DELETE',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ id }),
-  //     });
-  //     const data = await response.json();
-  //     if (!response.ok) {
-  //       throw new Error('Erro ao excluir o produto', data);
-  //     }
-  //     console.log('Produto deletado com sucesso:', data);
-  //     return data;
-  //   } catch (error) {
-  //     console.error('Erro ao excluir produto:', error);
-  //     throw error;
-  //   }
-  // };
+  const deleteProduct = async (id: string) => {
+    console.log('id', id);
+    try {
+      const response = await fetch('/api/delete/tropical', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error('Erro ao excluir o produto', data);
+      }
+      console.log('Produto deletado com sucesso:', data);
+      return data;
+    } catch (error) {
+      console.error('Erro ao excluir produto:', error);
+      throw error;
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -66,13 +66,13 @@ const ProductTable = () => {
                 <td>{item.Aniverário}</td>
                 <td>{item.Celular}</td>
 
-                {/* <td
+                <td
                   onClick={() => {
                     deleteProduct(item._id);
                   }}
                 >
                   Excluir
-                </td> */}
+                </td>
               </tr>
             ))}
         </tbody>

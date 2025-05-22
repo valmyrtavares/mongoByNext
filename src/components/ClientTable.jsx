@@ -54,29 +54,29 @@ export default function ClientTable() {
     }
   };
 
-  // async function deleteClient(id) {
-  //   try {
-  //     const response = await fetch('/api/delete/client', {
-  //       method: 'DELETE',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ id }),
-  //     });
+  async function deleteClient(id) {
+    try {
+      const response = await fetch('/api/delete/client', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id }),
+      });
 
-  //     const data = await response.json();
+      const data = await response.json();
 
-  //     if (!response.ok) {
-  //       throw new Error(data.error || 'Erro ao deletar item');
-  //     }
+      if (!response.ok) {
+        throw new Error(data.error || 'Erro ao deletar item');
+      }
 
-  //     console.log('Item deletado com sucesso:', data);
-  //     return data;
-  //   } catch (error) {
-  //     console.error('Erro na requisição DELETE:', error);
-  //     throw error;
-  //   }
-  // }
+      console.log('Item deletado com sucesso:', data);
+      return data;
+    } catch (error) {
+      console.error('Erro na requisição DELETE:', error);
+      throw error;
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -99,13 +99,13 @@ export default function ClientTable() {
                 <td>{client.email}</td>
                 <td>{client.ativo ? 'Sim' : 'Não'}</td>
                 <td>{client._id}</td>
-                {/* <td
+                <td
                   onClick={() => {
                     deleteClient(client._id);
                   }}
                 >
                   Excluir
-                </td> */}
+                </td>
               </tr>
             ))}
         </tbody>
