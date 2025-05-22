@@ -9,7 +9,7 @@ export async function POST(request) {
   const collection = db.collection('user-next');
 
   const result = await collection.insertOne(data);
-  client.close();
+  // client.close();
 
   return new Response(JSON.stringify(result), {
     status: 201,

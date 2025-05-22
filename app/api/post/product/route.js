@@ -8,7 +8,7 @@ export async function POST(request) {
   const collection = db.collection('product-next');
 
   const result = await collection.insertOne(data);
-  product.close();
+  //product.close();
 
   return new Response(JSON.stringify(result), {
     status: 201,
