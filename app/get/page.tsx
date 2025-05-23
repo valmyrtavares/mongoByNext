@@ -1,36 +1,27 @@
-// import ClientTable from '@/components/ClientTable';
-
-// const Clients = () => {
-//   return (
-//     <div>
-//       <ClientTable />
-//     </div>
-//   );
-// };
-
-// export default Clients;
-
-// app/get/page.tsx
+import clientPromise from '@/lib/mongodb';
 import ClientTable from '@/components/ClientTable';
 
+const dbName = 'next-db';
+
 export default async function ClientsPage() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/get/clients`,
-    {
-      cache: 'no-store', // Garante que os dados não fiquem cacheados
-    }
-  );
+  const client = await clientPromise;
+  const db = client.db(dbName);
+  const collection = db.collection('user-next');
 
-  if (!res.ok) {
-    throw new Error('Erro ao buscar clientes');
-  }
+  const clients = await collection.find({}).toArray();
 
-  const clients = await res.json();
+  // Como os dados vêm com _id como objeto, precisamos serializar o _id
+  const serializedClients = clients.map((client) => ({
+    _id: client._id.toString(), // importante para não quebrar o componente
+    nome: client.nome,
+    email: client.email,
+    ativo: client.ativo,
+  }));
 
   return (
     <main>
       <h1>Lista de Clientes</h1>
-      <ClientTable initialClients={clients} />
+      <ClientTable initialClients={serializedClients} />
     </main>
   );
 }
