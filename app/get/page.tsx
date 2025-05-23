@@ -1,5 +1,6 @@
 import clientPromise from '@/lib/mongodb';
 import ClientTable from '@/components/ClientTable';
+import { ObjectId } from 'mongodb';
 
 const dbName = 'next-db';
 
@@ -18,10 +19,24 @@ export default async function ClientsPage() {
     ativo: client.ativo,
   }));
 
+  async function deleteClient(id: string) {
+    'use server'; // isto marca como Server Action
+    const client = await clientPromise;
+    await client
+      .db('next-db')
+      .collection('user-next')
+      .deleteOne({
+        _id: new ObjectId(id),
+      });
+  }
+
   return (
     <main>
       <h1>Lista de Clientes</h1>
-      <ClientTable initialClients={serializedClients} />
+      <ClientTable
+        initialClients={serializedClients}
+        deleteClient={deleteClient}
+      />
     </main>
   );
 }

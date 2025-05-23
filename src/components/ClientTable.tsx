@@ -15,31 +15,13 @@ type Client = {
 
 interface ClientTableProps {
   initialClients: Client[];
+  deleteClient: (id: string) => void; // ou Promise<void>
 }
 
-export default function ClientTable({ initialClients }: ClientTableProps) {
-  // const [clients, setClients] = React.useState<Client[]>(initialClients);
-
-  // useEffect(() => {
-  //   async function fetchClients() {
-  //     console.log('estou entrando aqui');
-  //     try {
-  //       const res = await fetch('/api/get/clients');
-  //       const data = await res.json();
-  //       console.log('data', data);
-  //       setClients(data);
-  //     } catch (error) {
-  //       console.error('Erro ao buscar usuários:', error); // adicione isso
-  //       return NextResponse.json(
-  //         { error: 'Erro ao buscar usuários' },
-  //         { status: 500 }
-  //       );
-  //     }
-  //   }
-
-  //   fetchClients();
-  // }, []);
-
+export default function ClientTable({
+  initialClients,
+  deleteClient,
+}: ClientTableProps) {
   // const exportToExcel = () => {
   //   if (!clients.length) {
   //     alert('Nenhum cliente para exportar!');
@@ -67,30 +49,6 @@ export default function ClientTable({ initialClients }: ClientTableProps) {
   //   }
   // };
 
-  // async function deleteClient(id) {
-  //   try {
-  //     const response = await fetch('/api/delete/client', {
-  //       method: 'DELETE',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //       },
-  //       body: JSON.stringify({ id }),
-  //     });
-
-  //     const data = await response.json();
-
-  //     if (!response.ok) {
-  //       throw new Error(data.error || 'Erro ao deletar item');
-  //     }
-
-  //     console.log('Item deletado com sucesso:', data);
-  //     return data;
-  //   } catch (error) {
-  //     console.error('Erro na requisição DELETE:', error);
-  //     throw error;
-  //   }
-  // }
-
   return (
     <div className={styles.container}>
       <h2>Lista de Clientes</h2>
@@ -112,13 +70,13 @@ export default function ClientTable({ initialClients }: ClientTableProps) {
                 <td>{client.email}</td>
                 <td>{client.ativo ? 'Sim' : 'Não'}</td>
                 <td>{client._id}</td>
-                {/* <td
+                <td
                   onClick={() => {
                     deleteClient(client._id);
                   }}
                 >
                   Excluir
-                </td> */}
+                </td>
               </tr>
             ))}
         </tbody>
