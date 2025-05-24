@@ -15,6 +15,9 @@ const sideMenu = () => {
         <div className={style.menuItem}>
           <Link href="/get/tropical">Clientes Tropícal</Link>
         </div>
+        <div className={style.menuItem}>
+          <Link href="/get/images">Pinterest</Link>
+        </div>
       </div>
     </div>
   );
